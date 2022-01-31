@@ -182,6 +182,7 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "social_core.backends.github.GithubOAuth2",
     "social_core.backends.vk.VKOAuth2",
+    "social_core.backends.google.GoogleOAuth2",
 )
 
 
@@ -200,3 +201,11 @@ with open(
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = vk_auth["vk_client_id"]
 SOCIAL_AUTH_VK_OAUTH2_SECRET = vk_auth["vk_client_secret"]
+
+with open(
+    os.path.join(BASE_DIR, "tmp", "secrets", "google.json"), "r"
+) as secrets:
+    google_auth = json.load(secrets)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_auth["client_id"]
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_auth["client_secret"]
