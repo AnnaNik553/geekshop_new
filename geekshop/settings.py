@@ -22,9 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-$5rw9di_jqhuscpkyxi4^zsou&-r=nu=!5v+_ik0arwgo$az3#"
-)
+SECRET_KEY = "django-insecure-$5rw9di_jqhuscpkyxi4^zsou&-r=nu=!5v+_ik0arwgo$az3#"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     "basketapp",
     "adminapp",
     "social_django",
+    "ordersapp",
 ]
 
 # Auth model
@@ -77,6 +76,7 @@ TEMPLATES = [
                 "mainapp.context_processors.basket",
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
+                "django.template.context_processors.media",
             ],
         },
     },
@@ -186,25 +186,19 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-with open(
-    os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
-) as secrets:
+with open(os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r") as secrets:
     github_auth = json.load(secrets)
 
 SOCIAL_AUTH_GITHUB_KEY = github_auth["client_id"]
 SOCIAL_AUTH_GITHUB_SECRET = github_auth["client_secret"]
 
-with open(
-    os.path.join(BASE_DIR, "tmp", "secrets", "vk.json"), "r"
-) as secrets:
+with open(os.path.join(BASE_DIR, "tmp", "secrets", "vk.json"), "r") as secrets:
     vk_auth = json.load(secrets)
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = vk_auth["vk_client_id"]
 SOCIAL_AUTH_VK_OAUTH2_SECRET = vk_auth["vk_client_secret"]
 
-with open(
-    os.path.join(BASE_DIR, "tmp", "secrets", "google.json"), "r"
-) as secrets:
+with open(os.path.join(BASE_DIR, "tmp", "secrets", "google.json"), "r") as secrets:
     google_auth = json.load(secrets)
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_auth["client_id"]
