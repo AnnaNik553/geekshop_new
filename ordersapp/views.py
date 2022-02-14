@@ -14,7 +14,10 @@ from ordersapp.models import Order, OrderItem
 from mainapp.models import Product
 
 
-class OrderList(ListView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class OrderList(LoginRequiredMixin, ListView):
     model = Order
 
     def get_queryset(self):
