@@ -75,6 +75,6 @@ window.onload = function () {
         prefix: 'orderitems',
         added: setDefaultValue,
         removed: itemDelete,
-        hideLastAddForm: true
+        hideLastAddForm: false,
     });
 };
